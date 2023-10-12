@@ -1,14 +1,16 @@
 import 'dart:convert';
+
+import 'package:firebase_verify_token/firebase_token.dart';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:jose/jose.dart';
 
-import 'firebase_token.dart';
-
+/// This class contains methods to verify a firebase token. Remember to initialize the projectId variable before proceeding to the verify method
 class FirebaseVerifyToken {
-
+  /// Your firebase project ID
   static late String projectId;
 
+  /// Verify a firebase jwt token, is return true if is verified otherwise false
   static Future<bool> verify(String token) async {
     try {
       final keys = await _fetchPublicKeys();
@@ -66,6 +68,12 @@ class FirebaseVerifyToken {
     }
   }
 
+  /// This method it is used to know the user firebase uid starting from the jwt token
+  static String getIdByToken(String token) {
+    final jwt = JsonWebToken.unverified(token);
+    return jwt.claims['user_id'] as String;
+  }
+
   static Future<Map<String, String>> _fetchPublicKeys() async {
     final response = await http.get(
       Uri.parse(
@@ -79,5 +87,3 @@ class FirebaseVerifyToken {
     }
   }
 }
-
-

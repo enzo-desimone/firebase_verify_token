@@ -19,7 +19,6 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     FirebaseVerifyToken.projectId = 'test';
-
     super.initState();
   }
 
