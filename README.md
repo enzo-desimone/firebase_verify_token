@@ -24,6 +24,7 @@ Token verification involves the following steps:
 ## Install
 
 ### Import the Check App Version package
+
 To use the Firebase Verify Token package, follow the [plugin installation instructions](https://pub.dev/packages/firebase_verify_token/install).
 
 ### Use the package
@@ -33,10 +34,12 @@ Add the following import to your Dart code:
 import 'package:firebase_verify_token/firebase_verify_token.dart';
 ```
 
+
 Now we need to initialize the static variable **projectId** in the **FirebaseVerifyToken** class. You need to enter the firebase project ID.
 ```dart
 FirebaseVerifyToken.projectId = 'my-project-id';
 ```
+
 
 At this point, we can call the **verify** method from the **FirebaseVerifyToken** class, passing the **string token** that we want to verify, as a parameter. The method will return **TRUE** if the token is valid, **FALSE** if it is not.
 ```dart
