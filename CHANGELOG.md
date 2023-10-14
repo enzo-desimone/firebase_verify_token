@@ -1,3 +1,17 @@
-## 0.0.1
+## [0.0.4]
 
-* TODO: Describe initial release.
+- Update documentation
+
+## [0.0.3]
+
+- Update documentation
+
+## [0.0.2]
+
+- Update documentation
+
+# [0.0.1]
+
+- Publish plugin
+- Update documentation
+
