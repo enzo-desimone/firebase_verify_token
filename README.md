@@ -37,4 +37,8 @@ Now we need to initialize the static variable **projectId** in the **FirebaseVer
 ```dart
 FirebaseVerifyToken.projectId = 'my-project-id';
 ```
+
 At this point, we can call the **verify** method from the **FirebaseVerifyToken** class, passing the **string token** that we want to verify, as a parameter. The method will return **TRUE** if the token is valid, **FALSE** if it is not.
+```dart
+await FirebaseVerifyToken.verify('my-token-string');
+```
