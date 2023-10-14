@@ -32,8 +32,8 @@ Add the following import to your Dart code:
 ```dart
 import 'package:firebase_verify_token/firebase_verify_token.dart';
 ```
-Now we need to initialize the static variable **projectId** in the **FirebaseVerifyToken** class. You need to enter the firebase project ID.
 
+Now we need to initialize the static variable **projectId** in the **FirebaseVerifyToken** class. You need to enter the firebase project ID.
 ```dart
 FirebaseVerifyToken.projectId = 'my-project-id';
 ```
