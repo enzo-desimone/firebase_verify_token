@@ -1,3 +1,8 @@
+## [0.0.5]
+
+- Update documentation
+- Fix dart foundation import error
+
 ## [0.0.4]
 
 - Update documentation
@@ -10,7 +15,7 @@
 
 - Update documentation
 
-# [0.0.1]
+## [0.0.1]
 
 - Publish plugin
 - Update documentation

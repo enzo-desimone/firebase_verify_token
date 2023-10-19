@@ -1,7 +1,7 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:firebase_verify_token/firebase_token.dart';
-import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:jose/jose.dart';
 
@@ -63,7 +63,7 @@ class FirebaseVerifyToken {
 
       return true;
     } catch (e) {
-      debugPrint('Error verify token: ($e)');
+      log('Error verify token: ($e)');
       return false;
     }
   }

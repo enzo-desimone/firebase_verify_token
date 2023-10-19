@@ -1,8 +1,8 @@
 name: firebase_verify_token
-description: Plugin to verify a firebase jwt token
-version: 0.0.4
+description: Plugin to verify a firebase jwt token by a specific project id
+version: 0.0.5
 author: Enzo De Simone <enzodesimone@besimsoft.com>
-homepage: https://github.com/enzo-desimone/check_app_version
+homepage: https://github.com/enzo-desimone/firebase_verify_token
 
 environment:
   sdk: '>=3.1.2 <4.0.0'
