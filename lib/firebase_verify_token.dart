@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:firebase_verify_token/firebase_token.dart';
 import 'package:http/http.dart' as http;
 import 'package:jose/jose.dart';
+import 'package:ntp/ntp.dart';
 
 /// This class contains methods to verify a firebase token. Remember to initialize the projectId variable before proceeding to the verify method
 class FirebaseVerifyToken {
@@ -32,20 +33,33 @@ class FirebaseVerifyToken {
         return false;
       }
 
-      final now = DateTime.now();
+      final now = (await NTP.now()).toUtc();
 
       if (jwt.claims['aud'] != projectId) {
         return false;
       }
       if (jwt.claims['exp'] == null ||
-          DateTime.fromMillisecondsSinceEpoch((jwt.claims['exp'] as int) * 1000)
-              .isBefore(now)) {
+          DateTime.fromMillisecondsSinceEpoch(
+            (jwt.claims['exp'] as int) * 1000,
+            isUtc: true,
+          ).isBefore(now)) {
         return false;
       }
-      if (jwt.claims['iat'] == null ||
-          DateTime.fromMillisecondsSinceEpoch((jwt.claims['iat'] as int) * 1000)
-              .isAfter(now)) {
+
+      if (jwt.claims['iat'] == null) {
         return false;
+      }
+
+      if (!DateTime.fromMillisecondsSinceEpoch(
+        (jwt.claims['iat'] as int) * 1000,
+        isUtc: true,
+      ).isAtSameMomentAs(now)) {
+        if (DateTime.fromMillisecondsSinceEpoch(
+          (jwt.claims['iat'] as int) * 1000,
+          isUtc: true,
+        ).isAfter(now)) {
+          return false;
+        }
       }
 
       if (jwt.claims['iss'] != 'https://securetoken.google.com/$projectId') {
@@ -54,11 +68,20 @@ class FirebaseVerifyToken {
       if (jwt.claims['sub'] == null || (jwt.claims['sub'] as String).isEmpty) {
         return false;
       }
-      if (jwt.claims['auth_time'] == null ||
-          DateTime.fromMillisecondsSinceEpoch(
-            (jwt.claims['auth_time'] as int) * 1000,
-          ).isAfter(now)) {
+      if (jwt.claims['auth_time'] == null) {
         return false;
+      }
+
+      if (!DateTime.fromMillisecondsSinceEpoch(
+        (jwt.claims['auth_time'] as int) * 1000,
+        isUtc: true,
+      ).isAtSameMomentAs(now)) {
+        if (DateTime.fromMillisecondsSinceEpoch(
+          (jwt.claims['auth_time'] as int) * 1000,
+          isUtc: true,
+        ).isAfter(now)) {
+          return false;
+        }
       }
 
       return true;
