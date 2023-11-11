@@ -3,7 +3,7 @@ import 'dart:developer';
 
 import 'package:firebase_verify_token/firebase_token.dart';
 import 'package:http/http.dart' as http;
-import 'package:jose/jose.dart';
+import 'package:jose_plus/jose.dart';
 import 'package:ntp/ntp.dart';
 
 /// This class contains methods to verify a firebase token. Remember to initialize the projectId variable before proceeding to the verify method
